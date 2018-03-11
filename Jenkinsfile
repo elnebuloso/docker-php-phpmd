@@ -1,22 +1,24 @@
 pipeline {
     agent any
 
-    stage('build') {
-        steps {
-            script {
-                image = docker.build("elnebuloso/php-phpmd", "--pull --rm --no-cache -f Dockerfile .")
+    stages {
+        stage('build') {
+            steps {
+                script {
+                    image = docker.build("elnebuloso/php-phpmd", "--pull --rm --no-cache -f Dockerfile .")
 
-                image.inside() {
-                    phpmd_version = sh(script: "phpmd --version | grep -Po '(\\d+\\.)+\\d+'", returnStdout: true).trim()
-                }
+                    image.inside() {
+                        phpmd_version = sh(script: "phpmd --version | grep -Po '(\\d+\\.)+\\d+'", returnStdout: true).trim()
+                    }
 
-                semver = semver(phpmd_version)
+                    semver = semver(phpmd_version)
 
-                docker.withRegistry("https://registry.hub.docker.com", '061d45cc-bc11-4490-ac21-3b2276f1dd05'){
-                    image.push("${php}-${semver.get('tag_revision')}")
-                    image.push("${php}-${semver.get('tag_minor')}")
-                    image.push("${php}-${semver.get('tag_major')}")
-                    image.push()
+                    docker.withRegistry("https://registry.hub.docker.com", '061d45cc-bc11-4490-ac21-3b2276f1dd05'){
+                        image.push("${php}-${semver.get('tag_revision')}")
+                        image.push("${php}-${semver.get('tag_minor')}")
+                        image.push("${php}-${semver.get('tag_major')}")
+                        image.push()
+                    }
                 }
             }
         }
