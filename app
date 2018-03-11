@@ -8,21 +8,18 @@ case "$1" in
 
     verify)
         echo ""
-        docker run -it --rm phing-commons php --version
-        docker run -it --rm phing-commons docker --version
-        docker run -it --rm phing-commons docker-compose --version
-        docker run -it --rm phing-commons phing -version
+        docker run -it --rm docker-php-phpmd phpmd --version
     ;;
 
-    phing)
+    test)
         echo ""
-        docker run --rm -w $(pwd)/test -v $(pwd)/test:$(pwd)/test -v /var/run/docker.sock:/var/run/docker.sock phing-commons phing ${@:2}
+        docker run --rm -w $(pwd)/test -v $(pwd)/test:$(pwd)/test phpmd ${@:2}
     ;;
 
     *)
         echo ""
-        echo " - create  create all containers"
-        echo " - verify  verify all containers"
-        echo " - phing   phing demo project"
+        echo " - create  create container"
+        echo " - verify  verify container"
+        echo " - test    collect metrics from test"
     ;;
 esac
