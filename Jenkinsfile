@@ -14,9 +14,9 @@ pipeline {
                     semver = semver(phpmd_version)
 
                     docker.withRegistry("https://registry.hub.docker.com", '061d45cc-bc11-4490-ac21-3b2276f1dd05'){
-                        image.push("${php}-${semver.get('tag_revision')}")
-                        image.push("${php}-${semver.get('tag_minor')}")
-                        image.push("${php}-${semver.get('tag_major')}")
+                        image.push("${semver.get('tag_revision')}")
+                        image.push("${semver.get('tag_minor')}")
+                        image.push("${semver.get('tag_major')}")
                         image.push()
                     }
                 }
