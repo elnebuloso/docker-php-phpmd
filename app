@@ -13,7 +13,10 @@ case "$1" in
 
     test)
         echo ""
-        docker run --rm -w $(pwd)/test -v $(pwd)/test:$(pwd)/test phpmd ${@:2}
+        mkdir -p test/report
+        git clone https://github.com/symfony/asset.git test/symfony-asset > /dev/null 2>&1
+
+        docker run --rm -w $(pwd) -v $(pwd):$(pwd) docker-php-phpmd phpmd $(pwd)/test/symfony-asset/ xml codesize,unusedcode,naming --reportfile $(pwd)/test/report/phpmd.xml
     ;;
 
     *)

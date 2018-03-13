@@ -8,7 +8,7 @@ pipeline {
                     image = docker.build("elnebuloso/php-phpmd", "--pull --rm --no-cache -f Dockerfile .")
 
                     image.inside() {
-                        phpmd_version = sh(script: "phpmd --version | grep -Po '(\\d+\\.)+\\d+'", returnStdout: true).trim()
+                        phpmd_version = sh(script: "phpmd --version | grep -Po '((\\d+\\.)+\\d+)'", returnStdout: true).trim()
                     }
 
                     semver = semver(phpmd_version)
