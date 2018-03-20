@@ -7,7 +7,7 @@ pipeline {
                 script {
                     image = docker.build("elnebuloso/php-phpmd", "--pull --rm --no-cache -f Dockerfile .")
 
-                    image.inside() {
+                    image.inside(--entrypoint='') {
                         phpmd_version = sh(script: "phpmd --version | grep -Po '((\\d+\\.)+\\d+)'", returnStdout: true).trim()
                     }
 
