@@ -8,5 +8,5 @@ ENV PATH="/srv/composer/vendor/bin:${PATH}"
 RUN composer global require phpmd/phpmd \
     && chmod +x /usr/local/bin/entrypoint
 
-CMD ["-"]
+CMD ["sh"]
 ENTRYPOINT ["entrypoint"]
