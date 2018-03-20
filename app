@@ -16,11 +16,6 @@ case "$1" in
         docker run --rm -w $(pwd) -v $(pwd):$(pwd) docker-php-phpmd ./test/symfony-asset/ xml codesize,unusedcode,naming --reportfile ./test/report/phpmd.xml
     ;;
 
-    latest)
-        docker pull elnebuloso/php-phpmd
-        docker run --rm -w $(pwd) -v $(pwd):$(pwd) elnebuloso/php-phpmd ./test/symfony-asset/ xml codesize,unusedcode,naming --reportfile ./test/report/phpmd.xml
-    ;;
-
     *)
         echo " - create  create container"
         echo " - verify  verify container"
