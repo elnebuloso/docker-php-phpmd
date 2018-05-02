@@ -9,6 +9,10 @@ case "$1" in
         docker run -it --rm docker-php-phpmd --version
     ;;
 
+    help)
+        docker run -it --rm docker-php-phpmd --help
+    ;;
+
     test)
         rm -rf test/report
         mkdir -p test/report
@@ -20,6 +24,7 @@ case "$1" in
     *)
         echo " - create  create container"
         echo " - verify  verify container"
+        echo " - help    help container"
         echo " - test    collect metrics from test"
     ;;
 esac
