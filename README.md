@@ -9,6 +9,6 @@ See Supported Tags at https://hub.docker.com/r/elnebuloso/php-phpmd/tags/
 ## run
 
 ```
-docker run --rm -w $(pwd) -v $(pwd):$(pwd) elnebuloso/php-phpmd phpmd --version
-docker run --rm -w $(pwd) -v $(pwd):$(pwd) elnebuloso/php-phpmd phpmd
+docker run --rm -w $(pwd) -v $(pwd):$(pwd) elnebuloso/php-phpmd --version
+docker run --rm -w $(pwd) -v $(pwd):$(pwd) elnebuloso/php-phpmd
 ```
