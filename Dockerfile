@@ -1,8 +1,11 @@
-FROM elnebuloso/composer:7.2
+FROM composer
 MAINTAINER jeff.tunessen@gmail.com
 
-RUN composer global require phpmd/phpmd \
-    && ln -s /srv/composer/vendor/bin/phpmd /usr/local/bin/phpmd
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_HOME /srv
+
+RUN composer global require phpmd/phpmd --no-suggest --no-ansi --no-interaction \
+    && ln -s /srv/vendor/bin/phpmd /usr/local/bin/phpmd
 
 ENTRYPOINT ["phpmd"]
 CMD ["-"]
