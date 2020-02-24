@@ -15,7 +15,8 @@ Dockerized PHPMD - PHP Mess Detector (https://phpmd.org/)
 ## docker
 
 - https://hub.docker.com/r/elnebuloso/php-phpmd
-- https://hub.docker.com/r/elnebuloso/php-phpmd/tags
+- https://hub.docker.com/r/elnebuloso/php-phpmd/tags?page=1&ordering=last_updated
+- weekly builds, 0 0 * * 0
 
 ## run
 
